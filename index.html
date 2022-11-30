@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/styles.css">   
+</head>
+<body>
+    <form id="tg">
+        <div class="form-group">
+            <input type="text" name="msg" class="text" value="msg"></input>
+            <button type="submit" class="btn">Отправить</button>
+        </div>
+    </form>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const TOKEN = "5732642199:AAH6ovRCwto19ssV1ocDTUFoCdgscUJA0cI";
+    const CHAT_ID = "-1001806174980";
+    const URI_API = `https://api.telegram.org/${ TOKEN }/sendMessage`;
+
+    document.getElementById('tg').addEventListener('submit', function(e){
+        e.preventDefault();
+        
+        let message = `<b>Отправка сообщения</b>\n`;
+        message += `<b>Текст</b> ${ this.msg.value }` ;
+        
+        axios.post(URI_API, {
+            chat_id: CHAT_ID,
+            parss_mod: 'html',
+            text: message
+        })
+    })
+    
+</script>
+</html>
